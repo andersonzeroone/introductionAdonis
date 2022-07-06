@@ -2,6 +2,8 @@ import { DateTime } from 'luxon'
 import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm'
 
 export default class User extends BaseModel {
+  public static table = 'users'
+
   @column({ isPrimary: true })
   public id: number
 
@@ -9,7 +11,7 @@ export default class User extends BaseModel {
   public username: string
 
   @column()
-  public e_mail: string
+  public eMail: string
 
   @column({ serializeAs: null })
   public password: string
