@@ -23,8 +23,15 @@ import Database from '@ioc:Adonis/Lucid/Database'
 import Route from '@ioc:Adonis/Core/Route'
 import 'App/Modules/User/routes'
 
+Route.group(() => {
+  Route.post('login', 'AuthController.login')
+}).prefix('v1')
+
 Route.get('/', async () => {
   return Database.from('users').select('*')
 })
 
-Route.post('login', 'AuthController.login')
+Route.get('posts/:id', 'PostsController.show').where('id', {
+  match: /^[0-9]+$/,
+  cast: (id) => Number(id),
+})
